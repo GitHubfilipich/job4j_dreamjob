@@ -14,6 +14,7 @@ public class Vacancy {
     private LocalDateTime creationDate;
 
     public Vacancy() {
+        creationDate = LocalDateTime.now();
     }
 
     public Vacancy(int id, String title, String description, LocalDateTime creationDate) {
