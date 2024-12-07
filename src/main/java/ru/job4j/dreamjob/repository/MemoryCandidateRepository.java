@@ -17,10 +17,10 @@ public class MemoryCandidateRepository implements CandidateRepository {
     private final Map<Integer, Candidate> candidates = new HashMap<>();
 
     public MemoryCandidateRepository() {
-        save(new Candidate(0, "Elton John", "singer", LocalDateTime.now(), 0));
-        save(new Candidate(0, "Donald Trump", "president", LocalDateTime.now(), 0));
-        save(new Candidate(0, "Alex Pushkin", "poet", LocalDateTime.now(), 0));
-        save(new Candidate(0, "Ivan Petrov", "worker", LocalDateTime.now(), 0));
+        save(new Candidate(0, "Elton John", "singer", LocalDateTime.now(), 0, 0));
+        save(new Candidate(0, "Donald Trump", "president", LocalDateTime.now(), 0, 0));
+        save(new Candidate(0, "Alex Pushkin", "poet", LocalDateTime.now(), 0, 0));
+        save(new Candidate(0, "Ivan Petrov", "worker", LocalDateTime.now(), 0, 0));
     }
 
     @Override
@@ -39,7 +39,7 @@ public class MemoryCandidateRepository implements CandidateRepository {
     public boolean update(Candidate candidate) {
         return candidates.computeIfPresent(candidate.getId(),
                 (id, oldCandidate) -> new Candidate(oldCandidate.getId(), candidate.getName(),
-                        candidate.getDescription(), candidate.getCreationDate(), candidate.getCityId())) != null;
+                        candidate.getDescription(), candidate.getCreationDate(), candidate.getCityId(), candidate.getFileId())) != null;
     }
 
     @Override
