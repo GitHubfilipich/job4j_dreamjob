@@ -35,24 +35,14 @@ public class UserController {
         var savedUser = userService.save(user);
         if (savedUser.isEmpty()) {
             model.addAttribute("message", "Пользователь с такой почтой уже существует");
-            var newUser = new User();
-            newUser.setName("Гость");
-            model.addAttribute("user", newUser);
             return "errors/404";
         }
         session.setAttribute("user", savedUser.get());
-        model.addAttribute("user", savedUser.get());
         return "redirect:/vacancies";
     }
 
     @GetMapping("/login")
     public String getLoginPage(Model model, HttpSession session) {
-        var user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        model.addAttribute("user", user);
         return "users/login";
     }
 
@@ -61,9 +51,6 @@ public class UserController {
         var userOptional = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userOptional.isEmpty()) {
             model.addAttribute("error", "Почта или пароль введены неверно");
-            var newUser = new User();
-            newUser.setName("Гость");
-            model.addAttribute("user", newUser);
             return "users/login";
         }
         var session = request.getSession();

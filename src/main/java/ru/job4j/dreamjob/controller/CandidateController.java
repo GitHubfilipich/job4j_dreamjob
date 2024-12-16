@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.job4j.dreamjob.dto.FileDto;
 import ru.job4j.dreamjob.model.Candidate;
-import ru.job4j.dreamjob.model.User;
 import ru.job4j.dreamjob.service.CandidateService;
 import ru.job4j.dreamjob.service.CityService;
 
@@ -30,24 +29,12 @@ public class CandidateController {
     @GetMapping
     public String getAll(Model model, HttpSession session) {
         model.addAttribute("candidates", candidateService.findAll());
-        var user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        model.addAttribute("user", user);
         return "candidates/list";
     }
 
     @GetMapping("/create")
     public String getCreationPage(Model model, HttpSession session) {
         model.addAttribute("cities", cityService.findAll());
-        var user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        model.addAttribute("user", user);
         return "candidates/create";
     }
 
