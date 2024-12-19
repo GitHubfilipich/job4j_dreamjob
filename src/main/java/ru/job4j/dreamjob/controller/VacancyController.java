@@ -27,13 +27,13 @@ public class VacancyController {
     }
 
     @GetMapping
-    public String getAll(Model model, HttpSession session) {
+    public String getAll(Model model) {
         model.addAttribute("vacancies", vacancyService.findAll());
         return "vacancies/list";
     }
 
     @GetMapping("/create")
-    public String getCreationPage(Model model, HttpSession session) {
+    public String getCreationPage(Model model) {
         model.addAttribute("cities", cityService.findAll());
         return "vacancies/create";
     }
