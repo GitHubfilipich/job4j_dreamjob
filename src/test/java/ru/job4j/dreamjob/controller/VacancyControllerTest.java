@@ -202,7 +202,7 @@ public class VacancyControllerTest {
     }
 
     @Test
-    public void whenDeleteUnsuccessfulThenSameDataAndGetPageAndMessage() throws Exception {
+    public void whenDeleteUnsuccessfulThenSameDataAndGetPageAndMessage() {
         var id = 1;
         var integerArgumentCaptor = ArgumentCaptor.forClass(Integer.class);
         when(vacancyService.deleteById(integerArgumentCaptor.capture())).thenReturn(false);
